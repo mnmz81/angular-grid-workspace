@@ -1,0 +1,36 @@
+{
+  "name": "angular-dynamic-grid",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "angular-dynamic-grid/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "angular-dynamic-grid/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "angular-dynamic-grid/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "angular-dynamic-grid/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../coverage/angular-dynamic-grid"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
