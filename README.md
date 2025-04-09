@@ -1,77 +1,106 @@
-# AngularGridWorkspace
+# Angular Dynamic Grid
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+A high-performance, secure, and dynamic grid library for Angular applications designed to handle large datasets efficiently while providing extensive customization options and robust security features.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+## Features
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+### Core Functionality
+- Responsive grid component with virtual scrolling for 100,000+ rows
+- Dynamic column definitions with resizing/reordering capabilities
+- Efficient data binding with optimized change detection
+- Support for pagination, sorting, and filtering (both client and server-side)
+- Row virtualization and DOM recycling for optimal performance
+- Hierarchical row grouping with expand/collapse functionality
 
-## Finish your remote caching setup
+### Advanced Features
+- Row and cell selection with keyboard navigation support
+- Custom cell editors and validators
+- Data export functionality (CSV, Excel)
+- State management with persistence options
+- Theming and styling customization
+- Advanced row grouping with aggregation functions
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/CT4EP74ba2)
+### Security Considerations
+- Content sanitization for user-generated content
+- Input validation and output encoding
+- Protection against XSS vulnerabilities
+- Secure handling of dynamic HTML content
 
+### Performance Targets
+- Render time under 50ms for visible viewport
+- Minimal memory footprint with large datasets
+- Optimized Angular change detection cycles
 
-## Run tasks
+## Installation
 
-To run tasks with Nx use:
-
-```sh
-npx nx <target> <project-name>
+```bash
+npm install @ngrid-x/core --save
 ```
 
-For example:
+## Basic Usage
 
-```sh
-npx nx build myproject
+```typescript
+import { Component } from '@angular/core';
+import { GridModule } from '@ngrid-x/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <ngrid-x-grid
+      [columns]="columns"
+      [dataSource]="dataSource"
+      [options]="gridOptions">
+    </ngrid-x-grid>
+  `
+})
+export class AppComponent {
+  columns = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'name', headerName: 'Name', width: 200 },
+    { field: 'email', headerName: 'Email', width: 200 },
+    { field: 'phone', headerName: 'Phone', width: 150 }
+  ];
+  
+  dataSource = // your data source implementation
+  
+  gridOptions = {
+    enableSorting: true,
+    enableFilter: true,
+    enableVirtualization: true,
+    rowHeight: 40
+  };
+}
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## Documentation
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Detailed documentation is available at [documentation link].
 
-## Add new projects
+## Examples
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+Check out the examples in our demo application:
+- Basic grid setup
+- Custom cell rendering
+- Server-side operations
+- Virtual scrolling with large datasets
+- Row grouping and aggregation
+- State persistence
 
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
-```
+## Contributing
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-```sh
-# Generate an app
-npx nx g @nx/react:app demo
+## License
 
-# Generate a library
-npx nx g @nx/react:lib some-lib
-```
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## Development Roadmap
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [x] Core interfaces and models
+- [ ] Basic grid component
+- [ ] Virtual scrolling implementation
+- [ ] Selection capabilities
+- [ ] Filtering and sorting
+- [ ] Cell editing
+- [ ] Export functionality
+- [ ] Advanced grouping
